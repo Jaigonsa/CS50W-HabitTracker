@@ -54,8 +54,8 @@ TMDB_KEY = '123456789'
 
 In order to use the application, users must create an account. This account allows the user to create and save their reviews. For this purpose, the Django authentication system is used. On registration/login forms, flash messages are displayed if the user enters incorrect values or leaves fields blank.
 
-![Register](./static/habits/readme/register.png)
-![Login](./static/habits/readme/login.png)
+![Register](./habits/static/habits/readme/register.png)
+![Login](./habits/static/habits/readme/login.png)
 
 ### Search
 The user enters the title of the book or movie to register in the search bar.
@@ -63,14 +63,14 @@ User can toggle between books and movies by clicking the button on the search ba
 Depending on the selection, the web site will use either the Google Books API or The Movie Data Base.
 There is no need for the user to manually submit the search, as the input is read and sent to the API every time a change is made. To avoid unnecessary requests, the connection to the API is made after a short time without the user typing anything.
 
-![Search books](./static/habits/readme/search1.png)
-![Search movies](./static/habits/readme/search2.png)
+![Search books](./habits/static/habits/readme/search1.png)
+![Search movies](./habits/static/habits/readme/search2.png)
 
 
 ### Show results
 The covers/posters of the books or movies that match the search performed are displayed. Depending on the number of results, the container that includes them varies in size. The left and right buttons allow the user to scroll through the results, and the images enlarge as the mouse hovers over them.
 
-![Results](./static/habits/readme/results.png)
+![Results](./habits/static/habits/readme/results.png)
 
 ### Register habit
 Once one of the results is selected, a registration form is generated. This form includes the image of the book/movie, its title and year of publication, as well as a series of adjustable parameters that the user can personalize.
@@ -79,22 +79,22 @@ Once one of the results is selected, a registration form is generated. This form
 - **Color:** The user can specify the color that will be used to mark the habit on the calendar for easier identification.
 - **Review:** The users have 250 characters to express their opinion about the book/movie. The remaining characters are displayed dynamically as the user types.
 
-![Review](./static/habits/readme/review.png)
+![Review](./habits/static/habits/readme/review.png)
 
 ### Activity
 Registered books/movies can be viewed in the calendar or in the posts. Each option is displayed as chosen from the navigation bar. Similarly, use the appropriate button in the navigation bar to stop viewing reviews and perform a new search.
 - **Calendar:** The dates defined in the records are marked in the calendar with the color set by the user. Here the user can navigate through the different months and get an overview of the activity. Hovering the mouse over a marked date will display the title of the corresponding book/movie. Clicking on it will display the full dataset. FlatPickr is used for dates selection.
 - **Posts:** The posts preview user reviews (your own and others). Clicking on any of them will display the full review.
 
-![Calendar](./static/habits/readme/calendar.png)
-![Posts](./static/habits/readme/posts.png)
+![Calendar](./habits/static/habits/readme/calendar.png)
+![Posts](./habits/static/habits/readme/posts.png)
 
 
 ## Mobile-responsive
 
 The original design was adapted to a mobile device format. This was achieved by using Javascript to generate HTML elements based on the screen dimensions, and CSS with media queries.
 
-![Mobile](./static/habits/readme/mobile.png)
+![Mobile](./habits/static/habits/readme/mobile.png)
 
 
 ### Video Demo:  <https://youtu.be/HAGk27PWv7w>
