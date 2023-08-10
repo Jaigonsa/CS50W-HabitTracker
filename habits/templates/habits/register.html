@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{% block title %}Habit tracker{% endblock %}</title>
+        <link href="{% static 'habits/styles.css' %}" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Icons -->
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+          <symbol id="arrow-right-square-fill" viewBox="0 0 16 16">
+            <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+          </symbol>
+        </svg>
+
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand navbar-dark">
+            <div id="navbar-container" class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarNav">
+              </div>
+            </div>
+          </nav>
+
+    </head>
+    <body>
+        <div class="body">
+            <div class="block">
+                <div class="login-block">
+                    <div class="login-container">
+                        <!--Form-->
+                        <div class="container px-4 py-4" id="hanging-icons">
+                          <h3 class="login-title">Register</h3>
+                          <form action="{% url 'register' %}" method="post">
+                            {% csrf_token %}
+                            <input autocomplete="off" class="input-login" type="text" id="username" name="username" placeholder="Username">
+                            <input autocomplete="off" class="input-login" type="password" id="password" name="password" placeholder="Password">
+                            <input autocomplete="off" class="input-login" type="password" id="confirmation" name="confirmation" placeholder="Confirm password">
+                            <p class="login-message">Already registred? <a href="{% url 'login' %}">Log In.</a></p>
+                            <button class="btn btn-light" type="submit" style="float: right; padding: 0px;">
+                              <svg class="bi" width="2em" height="2em"><use xlink:href="#arrow-right-square-fill"></use></svg>
+                            </button>
+                          </form>
+                          <!--Error message-->
+                          {% if message %}
+                              <div class="error-message">{{ message }}</div>
+                          {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <footer id="credit">
+      <p>Created by Jaime González Sánchez for <a href="https://cs50.harvard.edu/web/2020/">CS50’s Web Programming with Python and JavaScript</a>.</p>
+    </footer>
+</html>

@@ -1,0 +1,132 @@
+{% extends "habits/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="row">
+    <div class="col" id="left-col">
+        <!-- CALENDAR -->
+        <div id="calendar-block">
+            <div class="calendar">
+                <div class="calendar-header">
+                    <p class="current-date"></p>
+                    <div class="icons">
+                        <span id="prev" class ="material-icons">chevron_left</span>
+                        <span id="next" class ="material-icons">chevron_right</span>
+                    </div>
+                </div>
+                <div class="calendar-body">
+                    <ul class="weeks">
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                        <li>Sun</li>
+                    </ul>
+                    <ul class="days">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- POSTS -->
+        <div id="activity-block">
+            <div id="all-activity">
+                {% for register in all_registers %}
+                <div class="post" data-title="{{ register.registerHabit.title }}" data-user="{{ register.registerUser }}">
+                    <div class="row">
+                        <div class="col-sm-2 col-md-2" style="padding: 0 0 0 3px;">
+                            <div class="image-container">
+                                <img src="{{ register.image }}" alt="Profile pic">
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-md-10" style="padding: 0 20px 0 35px;">
+                            <p class="long-post-text">
+                                <span class="post-title">{{ register.registerUser }} on {{ register.registerHabit }}:</span>
+                                <span style="font-style: italic; margin-bottom: 0; font-size: 15px;">"{{ register.review_long }}"</span>
+                            </p>
+                            <p class="short-post-text">
+                                <span class="post-title">{{ register.registerUser }} on {{ register.registerHabit }}:</span>
+                                <span style="font-style: italic; margin-bottom: 0; font-size: 15px;">"{{ register.review_short }}"</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="post-rating">
+                        {% for i in "12345"|make_list %}
+                            {% if i <= register.rating|stringformat:"d" %}
+                                <span>&#9733;</span>
+                            {% else %}
+                                <span>&#9734;</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+    <div class="col" id="right-col">
+        <!-- SEARCH BAR -->
+        <div id="search-block">
+            <form id="search-form" action="{% url 'create_habit' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+
+                    <div class="form-box">
+                        <div class="search-container">
+                            <div id="search-toggle">
+                                <input type="checkbox" id="toggle-input" class="toggle-input">
+                                <div id="btn-toggle"></div>
+                                <label for="toggle-input" class="toggle-btn d-flex"><i class="bi bi-book" style="font-size: 1.25em;" fill="#212529"></i></label>
+                                <label for="toggle-input" class="toggle-btn d-flex"><i class="bi bi-film" style="font-size: 1.25em;" fill="#212529"></i></label>
+                            </div>
+                            <input id="search-field" name="habit-name" class="form-control" autocomplete="off">
+                            <div id="autocomplete-results" style="position: absolute; z-index: 100;"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- MAIN IMAGES -->
+        <div id="main-images-block">
+            <img class="main-images" id="films-image" src="{% static 'habits/images/films.png' %}" alt="films">
+            <img class="main-images" id="books-image" src="{% static 'habits/images/books.png' %}" alt="films">
+        </div>
+
+        <!-- NO RESULTS -->
+        <div id="noResults-block">
+            <p id="no-results-message">Sorry, no results :(</p>
+        </div>
+
+        <!-- RESULTS -->
+        <div id="results-block">
+            <span id="left-button" class="material-icons">chevron_left</span>
+                <div id="results-container" class="d-flex flex-nowrap">
+                </div>
+            <span id="right-button" class="material-icons">chevron_right</span>
+        </div>
+
+        <!-- REGISTER HABIT -->
+        <div id="register-habit-block">
+            <div id="register-habit-container" class="d-flex flex-nowrap">
+            </div>
+        </div>
+
+        <!-- REGISTERED HABIT -->
+        <div id="registered-habit-block">
+            <div id="registered-habit-container" class="d-flex flex-nowrap">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    let user = "{{ user.username }}";
+</script>
+
+{% endblock %}
